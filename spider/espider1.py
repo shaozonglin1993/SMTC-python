@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import requests
 
 
-url = 'https://blog.csdn.net/tom942067059'
+url = 'https://ityard.blog.csdn.net/'
 
 
 def getSoup(target_url):
@@ -29,7 +29,7 @@ def getSoup(target_url):
     soup = BeautifulSoup(context, 'lxml')
     return soup
 
-
+a = 0
 def getContext():
     soup = getSoup(url)
 
@@ -37,8 +37,12 @@ def getContext():
     h = soup.find_all('div', class_='article-item-box csdn-tracking-statistics')
     #print(h)
 
+    
     for item in h:
         # get blog URL
+        global a
+        a = a+1
+        print('-----------------------------------------------------------------')
         label_url = item.find('a', class_='')
         the_url = label_url.attrs['href']
         print('URL: '+the_url)
@@ -63,6 +67,7 @@ def getContext():
 
 if __name__ == "__main__":
     getContext()
+    print(a)
 
 
  
